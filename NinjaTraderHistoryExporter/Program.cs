@@ -17,6 +17,24 @@ namespace NinjaTraderHistoryExporter
         {
             var keyValuePairs = args.Select(a => a.Split('=')).ToDictionary(pair => pair[0].Trim().TrimStart('/', '-').ToLower(), pair => pair.Length > 1 ? pair[1].Trim() : null);
 
+            if (OptionSpecified(keyValuePairs, "help"))
+            {
+                Console.WriteLine(
+@"Usage:
+NinjaTraderDataExporter [-in=<dir>] [-out=<dir>] [-sep=separator] [-noheader]
+
+ in:<input dir>     - Directory to read files from. If not specified, will
+                      default to '<My Documents>\NinjaTrader 7\db\minute'
+ out:<output dir>   - Directory to write output to. Defaults to
+                      'C:\Temp\NTHistoryExport' if not specified
+ sep:<separator>    - Separator for fields. Defaults to ';' (NinjaTrader
+                      export format) if not specified
+ noheader           - Exclude header row from output files
+ ?/help             - Print usage instructions
+");
+                return;
+            }
+
             var inDirectory = GetValueByKey(keyValuePairs, "in") ??
                               Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) +
                               @"\NinjaTrader 7\db\minute\";

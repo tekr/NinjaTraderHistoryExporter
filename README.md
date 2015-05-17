@@ -1,7 +1,6 @@
 NinjaTrader data exporter
 ===========================
-This tool is designed for bulk exporting market data bars from NinjaTrader 7, overcoming the
-application limitations that require exporting one instrument at a time.
+This tool is designed for bulk exporting market data bars from NinjaTrader 7, overcoming the application limitations that require exporting one instrument at a time.
 
 
 ## Usage
@@ -11,11 +10,11 @@ NinjaTraderDataExporter [-in=*input dir*] [-out=*output dir*] [-sep=*separator*]
 
   -out:&lt;output dir&gt; - Directory to write output to. Defaults to _**C:\Temp\NTHistoryExport**_ if not specified.
 
-  -sep:&lt;separator&gt; - Separator for fields. Defaults to ';' (NinjaTrader export format if not specified.
+  -sep:&lt;separator&gt; - Separator for fields. Defaults to ';' (NinjaTrader export format) if not specified.
 
   -noheader - Exclude header row from output files
 
-  -help	- Print usage instructions
+  -?/help - Print usage instructions
   
   
 ## Licence
