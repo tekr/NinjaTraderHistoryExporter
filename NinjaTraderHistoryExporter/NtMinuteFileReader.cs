@@ -46,7 +46,8 @@ namespace NinjaTraderHistoryExporter
 
                 if ((format & 0x800c) != 0)
                 {
-                    Console.WriteLine("Unexpected format '{0:X}' following time '{1:yyyy-MM-dd HH:mm:ss}' on symbol {2}. It's likely all further data will be corrupt.", format, lastMarketDataBar.DateTime, symbol);
+                    Console.WriteLine("Unexpected format '{0:X}' following time '{1:yyyy-MM-dd HH:mm:ss}' on symbol {2}. It's likely all further data will be corrupt.",
+                                    format, lastMarketDataBar.DateTime, symbol);
                 }
 
                 var dateTime = lastMarketDataBar.DateTime.AddMinutes(Math.Max(1, GetNumber(GetFormatBits(format, 8), false, reader)));
@@ -83,7 +84,7 @@ namespace NinjaTraderHistoryExporter
                 case 3:
                     return signed ? reader.ReadInt32() : (long)reader.ReadUInt32();
                 default:
-                    throw new ArgumentException(string.Format("Number format {0} was not recognised", format));
+                    throw new ArgumentException(string.Format("Number format {0:X} was not recognised", format));
             }
         }
 
@@ -111,7 +112,7 @@ namespace NinjaTraderHistoryExporter
                     break;
 
                 default:
-                    throw new ArgumentException("Unknown long format: " + volumeFormat);
+                    throw new ArgumentException(string.Format("Unknown volume format {0:X} ", volumeFormat));
             }
 
             return volume;

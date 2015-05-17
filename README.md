@@ -1,5 +1,5 @@
-NinjaTrader data exporter
-===========================
+NinjaTrader history exporter
+============================
 This tool is designed for bulk exporting market data bars from NinjaTrader 7, overcoming the application limitations that require exporting one instrument at a time.
 
 
