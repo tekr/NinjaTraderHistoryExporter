@@ -52,7 +52,7 @@ NinjaTraderDataExporter [-in=<dir>] [-out=<dir>] [-sep=separator] [-noheader]
                 var barParts = Directory.EnumerateFiles(symbolDir, "*.ntd").SelectMany(f => reader.Read(Path.GetFileName(f), new FileStream(f,
                                             FileMode.Open, FileAccess.Read, FileShare.ReadWrite))).OrderBy(r => r.DateTime).Select(record => new[]
                                                                         {
-                                                                            record.DateTime.ToString("yyyyMMdd HHmmss"),
+                                                                            record.DateTime.ToUniversalTime().ToString("yyyyMMdd HHmmss"),
                                                                             GetNumberString(record.Open),
                                                                             GetNumberString(record.High),
                                                                             GetNumberString(record.Low),

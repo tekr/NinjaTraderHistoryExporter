@@ -77,12 +77,14 @@ namespace NinjaTraderHistoryExporter
                 case 0 :
                     return 0;
                 case 1:
-                    var val = reader.ReadByte();
-                    return signed ? (long)(sbyte)(val ^ 0x80) : val;
+                    var byteVal = reader.ReadByte();
+                    return signed ? (sbyte)(byteVal ^ 0x80) : (long)byteVal;
                 case 2:
-                    return signed ? reader.ReadInt16() : (long)reader.ReadUInt16();
+                    var ushortVal = reader.ReadUInt16();
+                    return signed ? (short)((ushortVal ^ 0x4000) << 1) >> 1 : ushortVal;
                 case 3:
-                    return signed ? reader.ReadInt32() : (long)reader.ReadUInt32();
+                    var uintVal = reader.ReadUInt32();
+                    return signed ? (int)((uintVal ^ 0x40000000) << 1) >> 1 : (long)uintVal;
                 default:
                     throw new ArgumentException(string.Format("Number format {0:X} was not recognised", format));
             }
